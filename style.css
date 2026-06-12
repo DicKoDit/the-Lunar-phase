@@ -1,30 +1,62 @@
 {box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#e8e8e8;font-family:Segoe UI,sans-serif}
 
-header{
-    position:sticky;
-    top:0;
-    background:rgba(0,0,0,.95);
-    padding:18px 6%;
-    display:flex;
-    justify-content:space-between;
-    border-bottom:1px solid #333
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,.95);
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333
 }
 
-.logo{
-    font-size:24px;
-    letter-spacing:4px;
-    font-weight:bold
+.logo {
+    font-size: 24px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    color: #e8e8e8;
+    flex: 1;
+    text-align: right;
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 nav a {
-  color: #ddd;
-  text-decoration: none;
-  margin-right: 200px;
-  font-family: 'Another Danger Slanted', sans-serif;
-  font-size: 30px;
-  text-align: left;
+    color: #ddd;
+    text-decoration: none;
+    margin-right: 40px;  /* Уменьшил отступ между пунктами */
+    font-family: 'Another Danger Slanted', sans-serif;
+    font-size: 20px;  /* Уменьшил размер шрифта */
+    transition: color 0.3s ease;
+    position: relative;
 }
 
+nav a:hover {
+    color: #4169e1;
+}
+
+nav a.active {
+    color: #4169e1;
+}
+
+nav a:active {
+    color: #1e40af;
+}
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: -10px;
+    width: 120%;
+    height: 2px;
+    background: #4169e1;
+}
 .hero{
     /* Занимает всю доступную высоту и ширину экрана */
   height: 75vh;
@@ -53,12 +85,34 @@ nav a {
     color: rgba(255,255,255,.6)
 }
 
-.cta,button{background:#fff;
-    color:#000;
-    padding:12px 22px;
-    text-decoration:none;
-    border:none;
-    cursor:pointer
+/* Кнопки "Слушать" и "Купить" */
+.cta, button {
+    background: #4169e1;
+    color: #fff;
+    padding: 12px 22px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Another Danger Slanted', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.cta:hover, button:hover {
+    background: #5a7df5;
+    transform: translateY(-2px);
+}
+
+/* Кнопка "Подробнее" — нейтральная (не синий) */
+.card button {
+    background: #fff;
+    color: #000;
+}
+
+.card button:hover {
+    background: #e8e8e8;
 }
 
 section{padding:70px 8%}
@@ -74,10 +128,15 @@ h2{
     gap:24px
 }
 
-.card,.album,.release,.concert{
-    background:#141414;
-    border:1px solid #2b2b2b;
-    padding:20px
+.card, .album, .release, .concert {
+    background: #141414;
+    border: 1px solid #4169e170;  /* Синяя граница */
+    padding: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.card:hover, .album:hover {
+    border-color: #2652e4;
 }
 
 .cover{
