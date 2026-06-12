@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Товар - ЛУННАЯ ФАЗА</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-page {
+            padding: 70px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-container {
+            display: flex;
+            gap: 40px;
+            background: #141414;
+            border: 1px solid #2b2b2b;
+            padding: 30px;
+        }
+        .product-image {
+            flex: 1;
+            max-width: 500px;
+        }
+        .product-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-info h1 {
+            font-size: 36px;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            color: #e8e8e8;
+        }
+        .product-price {
+            font-size: 32px;
+            color: #6A6361;
+            margin-bottom: 30px;
+        }
+        .product-details {
+            margin-bottom: 30px;
+        }
+        .product-details p {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .buy-button {
+            background: #fff;
+            color: #000;
+            padding: 16px 40px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .buy-button:hover {
+            background: #e8e8e8;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #ddd;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .back-link:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html#home">Главная</a>
+            <a href="index.html#music">Музыка</a>
+            <a href="index.html#concerts">Концерты</a>
+            <a href="index.html#shop">Мерч</a>
+        </nav>
+    </header>
+
+    <div class="product-page">
+        <a href="index.html#shop" class="back-link">← Назад в мерч</a>
+        
+        <div class="product-container" id="product-container">
+            <!-- Товар будет загружен сюда через JavaScript -->
+        </div>
+    </div>
+
+    <footer>
+        <p>Telegram • VK</p>
+        <p>example@mail.ru</p>
+    </footer>
+
+    <!-- Модальное окно оформления заказа -->
+    <div id="order-modal" class="modal">
+        <div class="box" style="max-width: 700px;margin: 20px auto">
+            <span onclick="closeOrderModal()" class="close">×</span>
+            <h2>Оформление заказа</h2>
+            
+            <div id="order-item">
+                <!-- Информация о товаре -->
+            </div>
+
+            <div style="margin: 20px 0;">
+                <label style="font-size: 18px; margin-bottom: 10px;">Количество:</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button onclick="decreaseQuantity()" style="width: 40px; height: 40px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer;">-</button>
+                    <span id="quantity-display" style="font-size: 24px; min-width: 40px; text-align: center;">1</span>
+                    <button onclick="increaseQuantity()" style="width: 40px; height: 40px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer;">+</button>
+                    <button onclick="removeItem()" style="margin-left: 20px; padding: 8px 16px; background: #ff4444; color: #fff; border: none; cursor: pointer;">Удалить</button>
+                </div>
+            </div>
+
+            <div style="margin: 20px 0;">
+                <input type="text" id="fio" placeholder="ФИО" style="width: 95%; padding: 12px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444;">
+                <input type="email" id="mail" placeholder="Email" style="width: 95%; padding: 12px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444;">
+                <input type="tel" id="phone" placeholder="Телефон" style="width: 95%; padding: 12px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444;">
+                <input type="text" id="address" placeholder="Адрес" style="width: 95%; padding: 12px; margin: 10px 0; background: #222; color: #fff; border: 1px solid #444;">
+            </div>
+
+            <div style="margin: 20px 0;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" id="consent" style="width: 20px; height: 20px;">
+                    <span style="font-size: 14px;">Я даю своё согласие на обработку персональных данных</span>
+                </label>
+            </div>
+
+            <div style="background: #222; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="margin-bottom: 15px;">Ваш заказ:</h3>
+                <div id="order-summary">
+                    <!-- Отображение введенных данных и суммы -->
+                </div>
+            </div>
+
+            <button onclick="submitOrder()" style="width: 100%; padding: 16px; background: #fff; color: #000; border: none; cursor: pointer; font-size: 20px; font-weight: bold;">Оформить заказ</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Данные товаров (можно расширить)
+        const products = {
+            'merch-keychain': {
+                id: 'merch-keychain',
+                name: 'брелок "Лунная Фаза"',
+                price: 300,
+                image: 'assets/img/брелок.png',
+                details: 'Размер: 5x3 см, Металл: алюминий, Покрытие: защитное лаковое'
+            },
+            'merch-shirt': {
+                id: 'merch-shirt',
+                name: 'Футболка',
+                price: 1200,
+                image: 'assets/img/футболка.png',
+                details: 'Размер: S-XXL, Материал: 100% хлопок, Цвет: черный, Print: экранная печать'
+            },
+            'merch-badge': {
+                id: 'merch-badge',
+                name: 'Значок "Лунная Фаза"',
+                price: 100,
+                image: 'assets/img/значок.png',
+                details: 'Размер: 3.5 см, Металл: сталь, Покрытие: защитное лаковое, Крепление: булавка'
+            }
+        };
+
+        // Загрузка товара из URL
+        function loadProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            if (!productId || !products[productId]) {
+                document.getElementById('product-container').innerHTML = '<h2>Товар не найден</h2>';
+                return;
+            }
+
+            const product = products[productId];
+            document.getElementById('product-container').innerHTML = 
+                `<div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h1>${product.name}</h1>
+                    <div class="product-price">${product.price.toFixed(2)}₽</div>
+                    <div class="product-details">
+                        <p>${product.details}</p>
+                    </div>
+                    <button class="buy-button" onclick="openOrderModal('${productId}')">Купить</button>
+                </div>`;
+        }
+
+        // Управление заказами
+        let currentOrder = {
+            productId: null,
+            quantity: 1
+        };
+
+        function openOrderModal(productId) {
+            currentOrder.productId = productId;
+            currentOrder.quantity = 1;
+            document.getElementById('quantity-display').textContent = '1';
+            updateOrderSummary();
+            document.getElementById('order-modal').style.display = 'block';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').style.display = 'none';
+        }
+
+        function increaseQuantity() {
+            currentOrder.quantity++;
+            document.getElementById('quantity-display').textContent = currentOrder.quantity;
+            updateOrderSummary();
+        }
+
+        function decreaseQuantity() {
+            if (currentOrder.quantity > 1) {
+                currentOrder.quantity--;
+                document.getElementById('quantity-display').textContent = currentOrder.quantity;
+                updateOrderSummary();
+            }
+        }
+
+        function removeItem() {
+            currentOrder.productId = null;
+            currentOrder.quantity = 1;
+            document.getElementById('quantity-display').textContent = '1';
+            updateOrderSummary();
+            closeOrderModal();
+        }
+
+        function updateOrderSummary() {
+            if (!currentOrder.productId) {
+                document.getElementById('order-summary').innerHTML = '<p>Нет товаров в заказе</p>';
+                return;
+            }
+
+            const product = products[currentOrder.productId];
+            const total = product.price * currentOrder.quantity;
+
+            document.getElementById('order-summary').innerHTML = 
+                `<p><strong>Товар:</strong> ${product.name}</p>
+                 <p><strong>Количество:</strong> ${currentOrder.quantity}</p>
+                 <p><strong>Цена за единицу:</strong> ${product.price.toFixed(2)}₽</p>
+                 <p><strong>Сумма заказа:</strong> <strong style="font-size: 20px; color: #6A6361;">${total.toFixed(2)}₽</strong></p>`;
+        }
+
+        function submitOrder() {
+            const fio = document.getElementById('fio').value;
+            const mail = document.getElementById('mail').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const consent = document.getElementById('consent').checked;
+
+            if (!currentOrder.productId) {
+                alert('Выберите товар для заказа');
+                return;
+            }
+
+            if (!fio || !mail || !phone || !address) {
+                alert('Заполните все поля: ФИО, Email, Телефон, Адрес');
+                return;
+            }
+
+            if (!consent) {
+                alert('Необходимо дать согласие на обработку персональных данных');
+                return;
+            }
+
+            const product = products[currentOrder.productId];
+            const total = product.price * currentOrder.quantity;
+
+            alert(`Пусть и в тестовом режиме, но заказ оформлен! Может, вам он придёт первым, когда мы запустимся)\n\nТовар: ${product.name}\nКоличество: ${currentOrder.quantity}\nСумма: ${total.toFixed(2)}₽\n\nФИО: ${fio}\nEmail: ${mail}\nТелефон: ${phone}\nАдрес: ${address}`);
+
+            closeOrderModal();
+            // Здесь можно добавить отправку заказа на сервер
+        }
+
+        // Загрузка товара при открытии страницы
+        loadProduct();
+    </script>
+</body>
+</html>

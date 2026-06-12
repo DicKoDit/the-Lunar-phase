@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="ru"><head>
+
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ЛУННАЯ ФАЗА</title><link rel="stylesheet" href="style.css"></head>
+
+<body>
+
+<header>
+
+<nav>
+
+<a href="#home">Главная</a>
+
+<a href="#music">Музыка</a>
+
+<a href="#concerts">Концерты</a>
+
+<a href="#shop">Мерч</a>
+
+</nav>
+
+</header>
+
+
+
+<section id="home" class="hero">
+
+<div class="overlay">
+
+<!-- <h1>ЛУННАЯ ФАЗА</h1>
+
+<a class="cta" href="#music">СЛУШАТЬ</a> -->
+
+</div>
+
+</section>
+
+
+
+<section class="featured">
+
+<h2>Уже скоро.. вот прям совсем!</h2>
+
+<div class="release">
+
+<div class="cover">
+    <img src="assets/img/альбом Ужасы ночей.png" width="220" height="220">
+</div>
+
+<div>
+
+<h3>Альбом "Ужасы ночей"</h3>
+
+<p>Альтернативный рок • 2026</p>
+
+<button>Слушать</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="shop">
+
+<h2>МЕРЧ</h2>
+
+<div class="grid">
+
+<div class="card">
+    <img src="assets/img/брелок.png" width="100%" height="70%">
+    <h3>брелок "Лунная Фаза"</h3>
+    <p style="color:#6A6361">300,00₽ </p>
+    <button onclick="window.location.href='product.html?id=merch-keychain'">Подробнее</button>
+</div>
+
+<div class="card">
+    <img src="assets/img/футболка.png" width="100%" height="70%">
+    <h3>Футболка</h3>
+    <p style="color:#6A6361">1200,00₽ </p>
+    <button onclick="window.location.href='product.html?id=merch-shirt'">Подробнее</button>
+</div>
+
+<div class="card">
+    <img src="assets/img/значок.png" width="100%" height="70%">
+    <h3>Значок "Лунная Фаза"</h3>
+    <p style="color:#6A6361">100,00 ₽</p>
+    <button onclick="window.location.href='product.html?id=merch-badge'">Подробнее</button>
+</div>
+
+</section>
+
+
+
+<section id="music">
+
+<h2>ДИСКОГРАФИЯ</h2>
+
+<div class="grid">
+
+<div class="album">
+    <div class="cover">
+     <img src="assets/img/обл. Ведьма.png" width="300" height="300">
+</div>
+<h3>сингл "Ведьма"</h3>
+<button>Слушать</button>
+</div>
+
+<div class="album">
+    <div class="cover">
+        <img src="assets/img/сингл Ужасы ночей.png" width="300" height="300">
+    </div>
+    <h3>сингл "Ужасы ночей"</h3>
+    <button>Слушать</button>
+</div>
+
+<div class="album">
+    <div class="cover">
+        <img src="assets/img/альбом Ужасы ночей.png" width="300" height="300">
+    </div>
+    <h3>альбом "Ужасы ночей"</h3>
+    <button>Слушать</button>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section id="concerts">
+
+<h2>КОНЦЕРТЫ</h2>
+
+<div class="concert">
+    <span style="font-size: 24px;">34.05.2026 • Саратов • Дом Культуры</span>
+    <button onclick="openModal('ticket')">Билеты</button>
+</div>
+<div class="concert">
+    <span style="font-size: 24px;">29.06.2026 • Самара • Дворец</span>
+    <button onclick="openModal('ticket')">Билеты</button>
+</div>
+<div class="concert">
+    <span style="font-size: 24px;">24.07.2026 • Москва • VK Стадиум</span>
+    <button onclick="openModal('ticket')">Билеты</button>
+</div>
+
+
+</section>
+
+
+
+<footer>
+
+<p>Telegram • VK</p>
+
+<p>example@mail.ru</p>
+
+</footer>
+
+
+
+<div id="modal" class="modal">
+
+<div class="box">
+
+<span onclick="closeModal()" class="close">×</span>
+
+<h2 id="title"></h2>
+
+<p>Демонстрационная форма согласно курсовому проекту.</p>
+
+<input placeholder="Email">
+
+<button onclick="demo()">Продолжить</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body></html>
