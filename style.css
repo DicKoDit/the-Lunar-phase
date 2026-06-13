@@ -168,19 +168,41 @@ footer{
     border-top:1px solid #333
 }
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    padding: 24px
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    padding: 24px;
 }
 
-.box{
-    background:#181818;
-    max-width:500px;
-    margin:10% auto;
-    padding:25px
+.box {
+    background: #181818;
+    max-width: 700px;
+    max-height: 80vh;  /* Максимальная высота 80% от экрана */
+    margin: 5% auto;
+    padding: 25px;
+    overflow-y: auto;  /* Вертикальная прокрутка */
+    border-radius: 8px;
+}
+
+/* Стили для скроллбара (опционально) */
+.box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.box::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 4px;
+}
+
+.box::-webkit-scrollbar-thumb {
+    background: #4169e1;
+    border-radius: 4px;
+}
+
+.box::-webkit-scrollbar-thumb:hover {
+    background: #5a7df5;
 }
 
 input{
